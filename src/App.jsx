@@ -1,7 +1,7 @@
 import {Routes, Route} from "react-router-dom";
 import HomePage from "./pages/HomePage";
-import  SignUpPage from "./pages/signUpPage";
-import LogInPage from "./pages/logInPage";
+import  SignUpPage from "./pages/SignUpPage";
+import LogInPage from "./pages/LogInPage";
 import Navbar from "./components/Navbar";
 
 
