@@ -3,6 +3,7 @@ import HomePage from "./pages/HomePage";
 import  SignUpPage from "./pages/SignUpPage";
 import LoginPage from "./pages/LoginPages";
 import Navbar from "./components/Navbar";
+import ForgotPasswordPage from "./pages/ForgotPasswordPage";
 
 
 
@@ -28,6 +29,7 @@ function App() {
       <Route path="/" element={<HomePage />} />
       <Route path="/signup" element={<SignUpPage />} /> 
       <Route path="/login" element={<LoginPage />} />
+      <Route path="/forgotPassword" element={<ForgotPasswordPage />} />
     </Routes>
     </div>
     </div>
