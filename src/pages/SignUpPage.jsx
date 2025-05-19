@@ -11,6 +11,7 @@ import {
   EyeOff,
 } from "lucide-react";
 import { motion } from "framer-motion";
+import { useUserStore } from "../stores/useUserStore";
 
 
 const SignUpPage = () => {
@@ -20,6 +21,7 @@ const SignUpPage = () => {
     password: "",
     confirmPassword: "",
   });
+  const {signup} = useUserStore()
 
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
@@ -27,7 +29,11 @@ const loading = false // Replace with actual loading state from your signup func
 
   const handleSubmit = (e) => {
     e.preventDefault();
+       console.log("Form tag triggered");
+    console.log("Form submitted");
     console.log(formData);
+    signup(formData)
+   
     
   };
 
@@ -51,7 +57,9 @@ const loading = false // Replace with actual loading state from your signup func
         transition={{ duration: 0.8, delay: 0.2 }}
       >
         <div className="bg-gray-800 py-8 px-4 shadow sm:rounded-lg sm:px-10">
-          <form onSubmit={handleSubmit} className="space-y-6">
+          <form onSubmit={handleSubmit} className="space-y-6"
+          >
+            
             {/* Name */}
             <div>
               <label
@@ -175,7 +183,7 @@ const loading = false // Replace with actual loading state from your signup func
             {/* Submit Button */}
             <button
               type="submit"
-              className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-emerald-600 hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500 transition duration-150 ease-in-out disabled:opacity-50"
+              className="relative z-50 w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-emerald-600 hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500 transition duration-150 ease-in-out disabled:opacity-50"
               disabled={loading}
             >
               {loading ? (

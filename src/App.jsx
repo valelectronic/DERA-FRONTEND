@@ -4,6 +4,7 @@ import  SignUpPage from "./pages/SignUpPage";
 import LoginPage from "./pages/LoginPages";
 import Navbar from "./components/Navbar";
 import ForgotPasswordPage from "./pages/ForgotPasswordPage";
+import { Toaster } from "react-hot-toast";
 
 
 
@@ -35,6 +36,7 @@ function App() {
     </Routes>
     
     </div>
+    <Toaster/>
     </div>
   )
 }
