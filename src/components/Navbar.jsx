@@ -5,15 +5,26 @@ import { ShoppingCart, UserPlus, LogIn, LogOut, Lock, Menu } from "lucide-react"
 function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
-  const isAdmin = true; // Replace with actual admin check logic
-  const user = true;    // Replace with actual user authentication logic
+  const isAdmin = false; // Replace with actual admin check logic
+  const user = false;    // Replace with actual user authentication logic
 
   return (
     <header className='fixed top-0 left-0 w-full bg-gray-900 bg-opacity-90 backdrop-blur-md shadow-lg z-50 transition-all duration-300 border-b border-emerald-800'>
       <div className='container mx-auto px-4 py-3 flex justify-between items-center'>
-        <Link to='/' className='text-2xl font-bold text-emerald-400 flex items-center space-x-2'>
-          <span>E-Commerce</span>
-        </Link>
+        
+       <Link
+  to='/'
+  className='flex items-center space-x-3 group transition duration-300 ease-in-out'
+>
+  <img
+    src='/logo.png'
+    alt='Logo'
+    className='h-10 w-10 object-cover rounded-full transform group-hover:scale-110 transition duration-300 ease-in-out'
+  />
+  <span className='text-xl sm:text-2xl font-extrabold text-emerald-400 group-hover:text-white transition duration-300 ease-in-out'>
+    SOPHY-SHOP
+  </span>
+</Link>
 
         {/* Desktop Navigation */}
         <nav className='hidden sm:flex items-center gap-4'>
@@ -54,7 +65,7 @@ function Navbar() {
               className='bg-gray-700 hover:bg-gray-600 text-white py-2 px-4 
               rounded-md flex items-center transition duration-300 ease-in-out'
             >
-              <LogOut size={18} />
+              <LogOut size={16} />
               <span className='ml-2'>Log Out</span>
             </button>
           ) : (
