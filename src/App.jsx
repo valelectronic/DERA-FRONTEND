@@ -8,6 +8,7 @@ import ForgotPasswordPage from "./pages/ForgotPasswordPage";
 
 
 
+
 function App() {
   return (
     <div className='min-h-screen bg-gray-900 text-white relative overflow-hidden
@@ -23,14 +24,16 @@ function App() {
 
 			<div className='relative z-50 pt-20'>
     <Navbar/>
+     
     <Routes>
-
-
+  
       <Route path="/" element={<HomePage />} />
       <Route path="/signup" element={<SignUpPage />} /> 
       <Route path="/login" element={<LoginPage />} />
       <Route path="/forgotPassword" element={<ForgotPasswordPage />} />
+    
     </Routes>
+    
     </div>
     </div>
   )

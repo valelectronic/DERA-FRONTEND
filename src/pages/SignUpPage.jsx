@@ -12,6 +12,7 @@ import {
 } from "lucide-react";
 import { motion } from "framer-motion";
 
+
 const SignUpPage = () => {
   const [formData, setFormData] = useState({
     name: "",
@@ -22,12 +23,12 @@ const SignUpPage = () => {
 
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-
-  const loading = false; // Replace with actual loading state from your signup function
+const loading = false // Replace with actual loading state from your signup function
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    signup(formData); // implement signup
+    console.log(formData);
+    
   };
 
   return (
@@ -77,7 +78,7 @@ const SignUpPage = () => {
               </div>
             </div>
 
-            {/* Email */}
+            {/* Email */} 
             <div>
               <label
                 htmlFor="email"

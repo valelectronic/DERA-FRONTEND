@@ -5,7 +5,7 @@ import { ShoppingCart, UserPlus, LogIn, LogOut, Lock, Menu } from "lucide-react"
 function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
-  const isAdmin = false; // Replace with actual admin check logic
+  const isAdmin = true; // Replace with actual admin check logic
   const user = false;    // Replace with actual user authentication logic
 
   return (
@@ -22,7 +22,7 @@ function Navbar() {
     className='h-10 w-10 object-cover rounded-full transform group-hover:scale-110 transition duration-300 ease-in-out'
   />
   <span className='text-xl sm:text-2xl font-extrabold text-emerald-400 group-hover:text-white transition duration-300 ease-in-out'>
-    SOPHY-SHOP
+    SOPHY-STORE
   </span>
 </Link>
 
