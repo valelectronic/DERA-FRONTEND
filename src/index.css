@@ -1,1 +1,5 @@
 @import "tailwindcss";
+/* Add this if not already present */
+body {
+  @apply overflow-x-hidden;
+}
