@@ -156,7 +156,11 @@ const {user,logout} = useUserStore();
             {user ? (
               <button
                 className='bg-gray-700 hover:bg-gray-600 text-white py-2 px-4 rounded-md flex items-center transition'
-                onClick={() => setMobileMenuOpen(false)}
+                onClick={() => {
+                  logout()
+                  setMobileMenuOpen(false)
+                }}
+              
               >
                 <LogOut size={18} />
                 <span className='ml-2'>Log Out</span>
