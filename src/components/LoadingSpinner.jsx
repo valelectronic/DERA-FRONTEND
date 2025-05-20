@@ -1,35 +1,16 @@
-import { useEffect, useState } from "react";
-
-const quotes = [
-	"Great things take time — stay with us.",
-	"Success is not final, failure is not fatal. Keep going.",
-	"Patience is not the ability to wait, but how you act while waiting.",
-	"Loading... just like dreams take time to build.",
-	"Even the stars need time to shine — almost there.",
-	"Stay calm. Magic is loading.",
-	"Believe in the process. Good things are coming.",
-	"You’re not stuck — you’re growing.",
-];
-
-const LoadingSpinner = () => {
-	const [quote, setQuote] = useState("");
-
-	useEffect(() => {
-		const randomIndex = Math.floor(Math.random() * quotes.length);
-		setQuote(quotes[randomIndex]);
-	}, []);
-
+const LoadingSpinner = ({ message = "Sophy is preparing your experience..." }) => {
 	return (
 		<div className='flex flex-col items-center justify-center min-h-screen bg-gray-900 text-white space-y-6'>
+			{/* Glowing and spinning effect */}
 			<div className='relative'>
-				<div className='w-20 h-20 border-emerald-200 border-2 rounded-full' />
-				<div className='w-20 h-20 border-emerald-500 border-t-2 animate-spin rounded-full absolute left-0 top-0' />
+				<div className='w-24 h-24 border-[6px] border-emerald-200 rounded-full opacity-30 animate-ping' />
+				<div className='w-24 h-24 border-4 border-emerald-500 border-t-transparent animate-spin rounded-full absolute left-0 top-0' />
 			</div>
-			<p className='text-emerald-400 text-center text-lg font-medium px-4 animate-pulse'>
-				{quote}
+
+			{/* Animated text */}
+			<p className='text-emerald-400 text-xl font-bold tracking-wide animate-bounce'>
+				{message}
 			</p>
 		</div>
 	);
 };
-
-export default LoadingSpinner;
