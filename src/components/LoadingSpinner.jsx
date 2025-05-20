@@ -14,3 +14,4 @@ const LoadingSpinner = ({ message = "Sophy is preparing your experience..." }) =
 		</div>
 	);
 };
+export default LoadingSpinner;
