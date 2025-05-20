@@ -4,7 +4,8 @@ import { PlusCircle, Upload, Loader } from "lucide-react";
 import { toast } from "react-hot-toast";
 
 const categories = [
-  "jeans", "t-shirts", "shoes", "glasses", "jackets", "suits", "bags"
+  "earPod", "keyboard", "laptopStand", "leadStrip", "powerbank", "projector",
+  "smartWatch", "usbHub", "wirelessCharger",
 ];
 
 const CreateProductForm = () => {
