@@ -1,18 +1,26 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
+import { Link ,useNavigate} from "react-router-dom";
 import { LogIn, Mail, Lock, ArrowRight, Loader, Eye, EyeOff } from "lucide-react";
+import { useUserStore } from "../stores/useUserStore";
+
 
 const LoginPage = () => {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [showPassword, setShowPassword] = useState(false);
+    const {login,loading} = useUserStore()
+    const navigate = useNavigate()
 
-	const loading = false; // Replace with actual loading state from your login function
-
+	 
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		console.log(email, password);
+        login({ email, password }, () => {
+      setEmail("");
+      setPassword("");
+      navigate("/");
+    });
 	};
 
 	return (
@@ -70,7 +78,7 @@ const LoginPage = () => {
 		</div>
 		<input
 			id='password'
-			type='password'
+			 type={showPassword ? "text" : "password"} 
 			required
 			value={password}
 			onChange={(e) => setPassword(e.target.value)}
@@ -79,6 +87,14 @@ const LoginPage = () => {
 			focus:border-emerald-500 sm:text-sm'
 			placeholder='••••••••'
 		/>
+             <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400"
+                  tabIndex={-1}
+                >
+                  {showPassword ? <EyeOff className="h-5 w-5" /> : <Eye className="h-5 w-5" />}
+                </button>
 	</div>
 	<div className='text-right mt-2'>
 		<Link to='/forgotPassword' className='text-sm text-emerald-400 hover:text-emerald-300'>

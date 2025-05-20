@@ -30,18 +30,24 @@ signup: async ({ name, email, password, confirmPassword }) => {
   }
 }
 ,
-	login: async (email, password) => {
-		set({ loading: true });
+login: async ({ email, password }, callback) => {
+  set({ loading: true });
 
-		try {
-			const res = await axios.post("/auth/login", { email, password });
+  try {
+    const res = await axios.post("/auth/login", { email, password });
 
-			set({ user: res.data, loading: false });
-		} catch (error) {
-			set({ loading: false });
-			toast.error(error.response.data.message || "An error occurred");
-		}
-	},
+    set({ user: res.data, loading: false });
+    toast.success("Login successful");
+
+    if (typeof callback === "function") callback();
+  } catch (error) {
+    set({ loading: false });
+    toast.error(
+      error?.response?.data?.message || error.message || "An error occurred"
+    );
+  }
+},
+
 
 	logout: async () => {
 		try {
