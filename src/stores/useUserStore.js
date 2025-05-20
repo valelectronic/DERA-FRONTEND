@@ -53,6 +53,7 @@ login: async ({ email, password }, callback) => {
 		try {
 			await axios.post("/auth/logout");
 			set({ user: null });
+             toast.success("logout successful");
 		} catch (error) {
 			toast.error(error.response?.data?.message || "An error occurred during logout");
 		}

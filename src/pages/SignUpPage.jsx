@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import {
   UserPlus,
   Mail,
@@ -14,7 +14,7 @@ import { motion } from "framer-motion";
 import { useUserStore } from "../stores/useUserStore";
 
 const SignUpPage = () => {
-  const navigate = useNavigate();
+
   const { signup } = useUserStore();
 
   const [formData, setFormData] = useState({
@@ -45,7 +45,6 @@ const SignUpPage = () => {
           password: "",
           confirmPassword: "",
         });
-        navigate("/");
       }
     } catch (error) {
       console.error("Signup failed:", error);

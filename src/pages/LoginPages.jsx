@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Link ,useNavigate} from "react-router-dom";
+import { Link } from "react-router-dom";
 import { LogIn, Mail, Lock, ArrowRight, Loader, Eye, EyeOff } from "lucide-react";
 import { useUserStore } from "../stores/useUserStore";
 
@@ -10,7 +10,7 @@ const LoginPage = () => {
 	const [password, setPassword] = useState("");
 	const [showPassword, setShowPassword] = useState(false);
     const {login,loading} = useUserStore()
-    const navigate = useNavigate()
+    
 
 	 
 	const handleSubmit = (e) => {
@@ -19,7 +19,6 @@ const LoginPage = () => {
         login({ email, password }, () => {
       setEmail("");
       setPassword("");
-      navigate("/");
     });
 	};
 
