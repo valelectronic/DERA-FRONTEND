@@ -24,11 +24,13 @@ function HomePage() {
 					Discover the latest trends in eco-friendly tech gadgets and accessories.
 				</p>
 
-				<div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4'>
-					{categories.map((category) => (
-						<CategoryItem category={category} key={category.name} />
-					))}
-				</div>
+		<div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-4 justify-items-center">
+  {categories.map((category) => (
+    <CategoryItem category={category} key={category.name} />
+  ))}
+</div>
+
+
 			</div>
 		</div>
 	);
