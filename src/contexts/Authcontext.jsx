@@ -13,7 +13,7 @@ useEffect(() => {
   const fetchProfile = async () => {
     try {
       const res = await axios.get("/api/auth/profile", { withCredentials: true });
-      console.log("User profile:", res.data);
+      
       setUser(res.data);
     } catch (err) {
       console.error("Profile fetch error", err.response?.data || err.message);
