@@ -9,20 +9,23 @@ export const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
 
   // Check if user is logged in when app loads
-  useEffect(() => {
-    const fetchProfile = async () => {
-      try {
-        const res = await axios.get("/api/auth/profile", { withCredentials: true });
-        setUser(res.data);
-      } catch (err) {
-        setUser(null); // not logged in
-      } finally {
-        setLoading(false);
-      }
-    };
+useEffect(() => {
+  const fetchProfile = async () => {
+    try {
+      const res = await axios.get("/api/auth/profile", { withCredentials: true });
+      console.log("User profile:", res.data);
+      setUser(res.data);
+    } catch (err) {
+      console.error("Profile fetch error", err.response?.data || err.message);
+      setUser(null);
+    } finally {
+      setLoading(false);
+    }
+  };
 
-    fetchProfile();
-  }, []);
+  fetchProfile();
+}, []);
+
 
   const logout = async () => {
     await axios.post("/api/auth/logout", {}, { withCredentials: true });
