@@ -2,6 +2,8 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { PlusCircle, Upload, Loader } from "lucide-react";
 import { toast } from "react-hot-toast";
+import { useProductStore } from "../stores/useProductStore";
+
 
 const categories = [
   "earPod", "keyboard", "laptopStand", "leadStrip", "powerbank", "projector",
@@ -18,12 +20,23 @@ const CreateProductForm = () => {
   });
 
   const [loading, setLoading] = useState(false);
+  const {createProduct} = useProductStore()
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(newProduct);
-    setLoading(true);
 
+    try {
+      setLoading(true);
+    createProduct(newProduct)
+    setNewProduct({"name" : "", "description" : "", "price" : "", "category" : "", "image" : ""})
+      toast.success("Product created successfully!");
+
+    } catch (error) {
+      toast.error("Something went wrong!");
+      console.log("error creating a product",error.message)
+      
+    }
+    
     try {
       // Simulate submission
       await new Promise((res) => setTimeout(res, 1000));
@@ -43,7 +56,8 @@ const CreateProductForm = () => {
       setLoading(false);
     }
   };
-
+// Handle image upload
+  // Convert image to base64
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     if (file) {
@@ -51,7 +65,7 @@ const CreateProductForm = () => {
       reader.onloadend = () => {
         setNewProduct({ ...newProduct, image: reader.result });
       };
-      reader.readAsDataURL(file);
+      reader.readAsDataURL(file);// Convert to base64
     }
   };
 
@@ -79,7 +93,8 @@ const CreateProductForm = () => {
             id='name'
             value={newProduct.name}
             onChange={(e) => setNewProduct({ ...newProduct, name: e.target.value })}
-            className='mt-1 block w-full bg-gray-700 border border-gray-600 rounded-md py-2 px-3 text-white focus:ring-emerald-500 focus:border-emerald-500 text-sm sm:text-base'
+            className='mt-1 block w-full bg-gray-700 border border-gray-600 rounded-md py-2 px-3 text-white
+             focus:ring-emerald-500 focus:border-emerald-500 text-sm sm:text-base'
             required
           />
         </div>
@@ -111,7 +126,9 @@ const CreateProductForm = () => {
             value={newProduct.price}
             onChange={(e) => setNewProduct({ ...newProduct, price: e.target.value })}
             step='0.01'
-            className='mt-1 block w-full bg-gray-700 border border-gray-600 rounded-md py-2 px-3 text-white focus:ring-emerald-500 focus:border-emerald-500 text-sm sm:text-base'
+            className='mt-1 block w-full bg-gray-700 border
+             border-gray-600 rounded-md py-2 px-3 text-white
+              focus:ring-emerald-500 focus:border-emerald-500 text-sm sm:text-base'
             required
           />
         </div>
@@ -125,7 +142,7 @@ const CreateProductForm = () => {
             id='category'
             value={newProduct.category}
             onChange={(e) => setNewProduct({ ...newProduct, category: e.target.value })}
-            className='mt-1 block w-full bg-gray-700 border border-gray-600 rounded-md py-2 px-3 text-white focus:ring-emerald-500 focus:border-emerald-500 text-sm sm:text-base'
+            className='mt-1 block w-full capitalize bg-gray-700 border border-gray-600 rounded-md py-2 px-3 text-white focus:ring-emerald-500 focus:border-emerald-500 text-sm sm:text-base'
             required
           >
             <option value=''>Select a category</option>
@@ -133,7 +150,7 @@ const CreateProductForm = () => {
               <option key={category} value={category}>
                 {category}
               </option>
-            ))}
+            )) }
           </select>
         </div>
 
