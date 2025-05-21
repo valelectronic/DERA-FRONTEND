@@ -21,6 +21,7 @@ const ProductsList = () => {
 						<img
 							src={product.image}
 							alt={product.name}
+               loading="eager"
 							className='h-24 w-24 rounded-lg object-cover flex-shrink-0'
 						/>
 
