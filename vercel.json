@@ -2,7 +2,7 @@
   "rewrites": [
     {
       "source": "/api/:match*",
-      "destination": "https://mellow-gentleness-production.up.railway.app/api/:match*"
+      "destination": "https://dera-backend.onrender.com*"
     },
     {
       "source": "/(.*)",

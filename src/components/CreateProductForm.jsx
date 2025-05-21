@@ -29,7 +29,6 @@ const CreateProductForm = () => {
       setLoading(true);
     createProduct(newProduct)
     setNewProduct({"name" : "", "description" : "", "price" : "", "category" : "", "image" : ""})
-      toast.success("Product created successfully!");
 
     } catch (error) {
       toast.error("Something went wrong!");
