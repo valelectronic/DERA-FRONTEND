@@ -5,6 +5,8 @@ import { toast } from "react-hot-toast";
 import { useProductStore } from "../stores/useProductStore";
 
 
+
+
 const categories = [
   "earPod", "keyboard", "laptopStand", "leadStrip", "powerbank", "projector",
   "smartWatch", "usbHub", "wirelessCharger",
