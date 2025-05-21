@@ -1,5 +1,8 @@
 {
   "rewrites": [
-    { "source": "/(.*)", "destination": "/" }
+    {
+      "source": "/api/:match*",
+      "destination": "https://mellow-gentleness-production.up.railway.app/api/:match*"
+    }
   ]
 }
