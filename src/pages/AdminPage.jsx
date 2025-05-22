@@ -24,7 +24,7 @@ const AdminPage = () => {
 	}, [fetchAllProducts]);
 
   return (
-    <div className="min-h-screen relative overflow-hidden bg-gray-900">
+    <div className="min-h-screen relative overflow-hidden ">
       <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 py-16 max-w-4xl">
         <motion.h1
           className="text-3xl sm:text-4xl font-bold mb-8 text-emerald-400 text-center"

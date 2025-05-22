@@ -21,6 +21,7 @@ const CreateProductForm = () => {
     image: "",
     stock: "",
   });
+  
 
   const [loading, setLoading] = useState(false);
   const {createProduct} = useProductStore()
@@ -71,6 +72,8 @@ const CreateProductForm = () => {
       reader.readAsDataURL(file);// Convert to base64
     }
   };
+  console.log("Creating product with data:", newProduct);
+
 
   return (
     <motion.div
@@ -144,7 +147,7 @@ const CreateProductForm = () => {
     type='number'
     id='stock'
     value={newProduct.stock}
-    onChange={(e) => setNewProduct({ ...newProduct, stock: e.target.value })}
+    onChange={(e) => setNewProduct({ ...newProduct, stock: Number(e.target.value) })}
     min='0'
     className='mt-1 block w-full bg-gray-700 border border-gray-600 rounded-md py-2 px-3 text-white
      focus:ring-emerald-500 focus:border-emerald-500 text-sm sm:text-base'

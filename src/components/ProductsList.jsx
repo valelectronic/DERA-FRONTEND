@@ -26,7 +26,7 @@ const ProductsList = () => {
 
   return (
     <motion.div
-      className='bg-gray-900 shadow-lg rounded-lg overflow-hidden max-w-4xl mx-auto w-full p-4'
+      className=' shadow-lg rounded-lg overflow-hidden max-w-4xl mx-auto w-full p-4'
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8 }}
@@ -35,7 +35,7 @@ const ProductsList = () => {
         {products?.map((product) => (
           <div
             key={product._id}
-            className='bg-gray-800 p-5 rounded-xl shadow flex flex-col sm:flex-row sm:items-center gap-5'
+            className='bg-gray-900 p-5 rounded-xl shadow flex flex-col sm:flex-row sm:items-center gap-5'
           >
             <img
               src={product.image}
@@ -96,30 +96,27 @@ const ProductsList = () => {
       </div>
 
       {/* Delete Confirmation Modal */}
-     {showConfirm && (
+    {showConfirm && (
   <motion.div
-    className="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50"
+    className="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50 px-4"
     initial={{ opacity: 0 }}
     animate={{ opacity: 1 }}
     exit={{ opacity: 0 }}
   >
     <motion.div
-      className="bg-gray-900 text-white rounded-2xl p-6 w-full max-w-sm shadow-xl border border-gray-700"
+      className="bg-gray-900 text-white rounded-2xl p-5 sm:p-6 w-full max-w-sm shadow-xl border border-gray-700"
       initial={{ scale: 0.9, opacity: 0 }}
       animate={{ scale: 1, opacity: 1 }}
       exit={{ scale: 0.9, opacity: 0 }}
       transition={{ duration: 0.3 }}
     >
       <h2 className="text-lg font-bold mb-3 text-white">Delete Product?</h2>
-      <p className="text-gray-300">
+      <p className="text-gray-300 text-sm sm:text-base">
         Are you sure you want to delete{" "}
-        <span className="text-red-400 font-medium">
-          {productToDelete?.name}
-        </span>
-        ?
+        <span className="text-red-400 font-medium">{productToDelete?.name}</span>?
       </p>
 
-      <div className="mt-6 flex justify-end gap-3">
+      <div className="mt-6 flex flex-col sm:flex-row justify-end gap-3">
         <button
           onClick={() => setShowConfirm(false)}
           className="px-4 py-2 rounded-lg text-sm bg-gray-700 hover:bg-gray-600 transition"
@@ -136,6 +133,7 @@ const ProductsList = () => {
     </motion.div>
   </motion.div>
 )}
+
 
     </motion.div>
   );

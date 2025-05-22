@@ -10,6 +10,7 @@ import {useUserStore} from "./stores/useUserStore";
 import LoadingSpinner from "./components/LoadingSpinner";
 import AdminPage from "./pages/AdminPage";
 import EditingPage from "./pages/EditingPage";
+import CategoryPage from "./pages/CategoryPage";
 
 
 
@@ -54,6 +55,7 @@ function App() {
       <Route path="/forgotPassword" element={<ForgotPasswordPage />} />
       <Route path="/admin-dashboard" element={user?.role === "admin" ? <AdminPage/>: <Navigate to = "/"/>} />
       <Route path="/editingPage/:id" element={user && user.role === 'admin'? <EditingPage/>: <Navigate to = "/"/>} />
+       <Route path="/category/:category" element={<CategoryPage />} />
     
     </Routes>
     
