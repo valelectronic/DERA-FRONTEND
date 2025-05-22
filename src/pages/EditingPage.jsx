@@ -10,6 +10,7 @@ const categories = [
   "projector", "smartWatch", "usbHub", "wirelessCharger"
 ];
 
+const baseURL = import.meta.env.VITE_API_URL || "";
 const EditingPage = () => {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -24,7 +25,8 @@ const EditingPage = () => {
     // Fetch product to edit
     const fetchProduct = async () => {
       try {
-        const { data } = await axios.get(`/api/product/${id}`);
+        const { data } = await axios.get(`${baseURL}/api/product/${id}`, { withCredentials: true });
+        
         setProduct(data);
         setFormData({
           name: data.name,
@@ -58,7 +60,7 @@ const EditingPage = () => {
     e.preventDefault();
     try {
       setLoading(true);
-      await axios.put(`/api/product/${id}`, formData);
+      await axios.put(`${baseURL}/api/product/${id}`, formData);
       toast.success("Product updated successfully!");
       navigate("/dashboard/products");
     } catch (error) {
