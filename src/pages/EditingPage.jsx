@@ -64,10 +64,14 @@ const EditingPage = () => {
       setLoading(true);
        await axios.put(
   `https://dera-backend.onrender.com/api/product/${id}`,
-  updatedProductData,
+  formData,
   {
+    headers: {
+      "Content-Type": "application/json",
+    },
     withCredentials: true, // Important if you're using cookies for auth
   }
+  
 );
 
       toast.success("Product updated successfully!");
