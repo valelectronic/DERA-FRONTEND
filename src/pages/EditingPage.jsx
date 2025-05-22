@@ -25,7 +25,9 @@ const EditingPage = () => {
     // Fetch product to edit
     const fetchProduct = async () => {
       try {
-        const { data } = await axios.get(`${baseURL}/api/product/${id}`, { withCredentials: true });
+        const { data } = await axios.get("https://dera-backend.onrender.com/api/product/" + id, {
+  withCredentials: true,
+});
         
         setProduct(data);
         setFormData({
