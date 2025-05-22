@@ -4,6 +4,9 @@ import { motion } from "framer-motion";
 import { Upload, Loader, Save } from "lucide-react";
 import { toast } from "react-hot-toast";
 import axios from "axios";
+import LoadingSpinner from "../components/LoadingSpinner";
+
+
 
 const categories = [
   "earPod", "keyboard", "laptopStand", "leadStrip", "powerbank",
@@ -75,7 +78,7 @@ const EditingPage = () => {
 );
 
       toast.success("Product updated successfully!");
-      navigate("/dashboard/products");
+      navigate("/admin-dashboard");
     } catch (error) {
       toast.error("Error updating product.");
       console.error(error);
@@ -84,7 +87,7 @@ const EditingPage = () => {
     }
   };
 
-  if (!product) return <div className="text-white text-center mt-10">Loading...</div>;
+  if (!product) return <div className="text-white text-center mt-10"><LoadingSpinner/></div>;
 
   return (
     <motion.div
