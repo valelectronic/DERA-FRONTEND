@@ -4,7 +4,7 @@ import CategoryItem from '../components/CategoryItem';
 const categories = [
 	{ href: "/earPod", name: "earPod", imageUrl: "/earpod.jpg" },
 	{ href: "/keyboard", name: "keyboard", imageUrl: "/keyboard.jpg" },
-	{ href: "/lapStand", name: "laptop Stand", imageUrl: "/laptopStand.jpg" },
+	{ href: "/laptopStand", name: "laptop Stand", imageUrl: "/laptopStand.jpg" },
 	{ href: "/leadStrip", name: "lead strip", imageUrl: "/leadStrip.jpg" },
 	{ href: "/powerbank", name: "powerbank", imageUrl: "/powerbank.jpg" },
 	{ href: "/projector", name: "mini projector", imageUrl: "/projector.jpg" },
