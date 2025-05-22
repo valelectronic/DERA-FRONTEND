@@ -1,9 +1,12 @@
 import { motion } from "framer-motion";
 import { Trash, Star, Pencil } from "lucide-react";
 import { useProductStore } from "../stores/useProductStore";
+import { useNavigate } from "react-router-dom";
+
 
 const ProductsList = () => {
 	const { deleteProduct, toggleFeaturedProduct, products } = useProductStore();
+  const navigate = useNavigate();
 
 	return (
 		<motion.div
@@ -34,9 +37,17 @@ const ProductsList = () => {
 									minimumFractionDigits: 2,
 								}).format(product.price)}
 							</div>
-							<div className='text-gray-400 text-sm mt-1'>
-								In stock: {product.stock ?? 0}
-							</div>
+						<div className='flex items-center gap-2 text-sm mt-1 font-medium'>
+  <span
+    className={`h-2 w-2 rounded-full ${
+      product.stock > 0 ? "bg-green-400" : "bg-red-400"
+    }`}
+  ></span>
+  <span className={product.stock > 0 ? "text-green-400" : "text-red-400"}>
+    {product.stock > 0 ? `In stock (${product.stock})` : "Out of stock"}
+  </span>
+</div>
+
 
 							<div className='flex items-center gap-4 mt-4'>
 								<button
@@ -50,12 +61,12 @@ const ProductsList = () => {
 									<Star className='h-5 w-5' />
 								</button>
 
-								<button
-									onClick={() => console.log("Edit product", product._id)}
-									className='text-blue-400 hover:text-blue-300 p-2'
-								>
-									<Pencil className='h-5 w-5' />
-								</button>
+								 <button
+                  onClick={() => navigate(`/EditingPage/${product._id}`)}  // <-- navigate here
+                  className='text-blue-400 hover:text-blue-300 p-2'
+                >
+                  <Pencil className='h-5 w-5' />
+                </button>
 
 								<button
 									onClick={() => deleteProduct(product._id)}
