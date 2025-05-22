@@ -2,18 +2,22 @@ import toast from "react-hot-toast";
 import { ShoppingCart } from "lucide-react";
 import { useUserStore } from "../stores/useUserStore";
 import { useNavigate } from "react-router-dom";
+import { useCartStore } from "../stores/useCartStore";
 
 const ProductCard = ({ product }) => {
   const { user } = useUserStore();
   const navigate = useNavigate();
+  const {addToCart} = useCartStore()
 
   const handleAddToCart = () => {
     if (!user) {
       toast.error("Please login to add products to cart", { id: "login" });
       navigate("/login");
       return;
+
     }
-    toast.success("Product added to cart", { id: "addToCart" });
+    addToCart(product);
+   
   };
 
   // Helper function to format relative time
