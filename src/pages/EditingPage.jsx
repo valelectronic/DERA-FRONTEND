@@ -10,7 +10,7 @@ const categories = [
   "projector", "smartWatch", "usbHub", "wirelessCharger"
 ];
 
-const baseURL = import.meta.env.VITE_API_URL || "";
+
 const EditingPage = () => {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -62,7 +62,14 @@ const EditingPage = () => {
     e.preventDefault();
     try {
       setLoading(true);
-      await axios.put(`${baseURL}/api/product/${id}`, formData);
+       await axios.put(
+  `https://dera-backend.onrender.com/api/product/${id}`,
+  updatedProductData,
+  {
+    withCredentials: true, // Important if you're using cookies for auth
+  }
+);
+
       toast.success("Product updated successfully!");
       navigate("/dashboard/products");
     } catch (error) {
