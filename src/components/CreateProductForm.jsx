@@ -19,6 +19,7 @@ const CreateProductForm = () => {
     price: "",
     category: "",
     image: "",
+    stock: "",
   });
 
   const [loading, setLoading] = useState(false);
@@ -50,6 +51,7 @@ const CreateProductForm = () => {
         price: "",
         category: "",
         image: "",
+        stock: ""
       });
     } catch (error) {
       toast.error("Something went wrong!");
@@ -133,6 +135,23 @@ const CreateProductForm = () => {
             required
           />
         </div>
+        {/* Stock */}
+<div>
+  <label htmlFor='stock' className='block text-sm font-medium text-gray-300'>
+    Stock (Available Quantity)
+  </label>
+  <input
+    type='number'
+    id='stock'
+    value={newProduct.stock}
+    onChange={(e) => setNewProduct({ ...newProduct, stock: e.target.value })}
+    min='0'
+    className='mt-1 block w-full bg-gray-700 border border-gray-600 rounded-md py-2 px-3 text-white
+     focus:ring-emerald-500 focus:border-emerald-500 text-sm sm:text-base'
+    required
+  />
+</div>
+
 
         {/* Category */}
         <div>
