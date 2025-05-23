@@ -8,55 +8,62 @@ const CartItem = ({ item }) => {
 	const { removeFromCart, updateQuantity } = useCartStore();
 
 	return (
-		<div className='rounded-lg border p-4 shadow-sm border-gray-700 bg-gray-800 md:p-6'>
-			<div className='space-y-4 md:flex md:items-center md:justify-between md:gap-6 md:space-y-0'>
-				{/* Product Image (Back to left edge) */}
-				<div className='shrink-0 flex justify-start'>
-					<img
-						className='h-20 w-20 md:h-32 md:w-32 rounded object-cover'
-						src={item.image}
-						alt={item.name}
-					/>
-				</div>
+		<div className='bg-gray-900 p-5 rounded-xl shadow flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-6 w-full'>
+			{/* Product Image */}
+			<div className='shrink-0'>
+				<img
+					className='h-24 w-24 rounded-lg object-cover'
+					src={item.image}
+					alt={item.name}
+				/>
+			</div>
 
-				{/* Product Info */}
-				<div className='w-full min-w-0 flex-1 space-y-2'>
-					<p className='text-base font-medium text-white hover:text-emerald-400 hover:underline'>
-						{item.name}
+			{/* Product Info and Actions */}
+			<div className='flex-1 w-full'>
+				{/* Top: Name + Price */}
+				<div className='flex flex-col sm:flex-row sm:items-center sm:justify-between'>
+					<p className='text-white text-lg font-semibold truncate'>{item.name}</p>
+					<p className='text-green-400 text-base font-medium mt-1 sm:mt-0'>
+						{formatNaira(item.price)}
 					</p>
-					<p className='text-sm text-gray-400'>In Stock: {item.stock}</p>
-					<div className='flex items-center gap-4'>
-						<button
-							className='inline-flex items-center text-sm font-medium text-red-400 hover:text-red-300 hover:underline'
-							onClick={() => removeFromCart(item._id)}
-						>
-							<Trash className='w-4 h-4 mr-1' />
-							Remove
-						</button>
-					</div>
 				</div>
 
-				{/* Quantity & Price */}
-				<div className='flex items-center justify-between md:flex-col md:items-end md:gap-4'>
+				{/* Stock Status */}
+				<div className='flex items-center gap-2 text-sm font-medium mt-2'>
+					<span
+						className={`h-2 w-2 rounded-full ${
+							item.stock > 0 ? "bg-green-400" : "bg-red-400"
+						}`}
+					></span>
+					<span className={item.stock > 0 ? "text-green-400" : "text-red-400"}>
+						{item.stock > 0 ? `In stock (${item.stock})` : "Out of stock"}
+					</span>
+				</div>
+
+				{/* Quantity + Remove Button */}
+				<div className='mt-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3'>
 					<div className='flex items-center gap-2'>
 						<button
-							className='inline-flex h-6 w-6 items-center justify-center rounded-md border border-gray-600 bg-gray-700 hover:bg-gray-600'
+							className='p-2 rounded-full bg-gray-700 hover:bg-gray-600 text-gray-300 transition'
 							onClick={() => updateQuantity(item._id, item.quantity - 1)}
 						>
-							<Minus className='text-gray-300 w-4 h-4' />
+							<Minus className='w-4 h-4' />
 						</button>
 						<p className='text-white'>{item.quantity}</p>
 						<button
-							className='inline-flex h-6 w-6 items-center justify-center rounded-md border border-gray-600 bg-gray-700 hover:bg-gray-600'
+							className='p-2 rounded-full bg-gray-700 hover:bg-gray-600 text-gray-300 transition'
 							onClick={() => updateQuantity(item._id, item.quantity + 1)}
 						>
-							<Plus className='text-gray-300 w-4 h-4' />
+							<Plus className='w-4 h-4' />
 						</button>
 					</div>
 
-					<p className='text-base font-bold text-emerald-400'>
-						{formatNaira(item.price)}
-					</p>
+					<button
+						onClick={() => removeFromCart(item._id)}
+						className='p-2 rounded-full bg-red-600 hover:bg-red-500 text-white transition self-start sm:self-auto'
+					>
+						<Trash className='w-4 h-4' />
+					</button>
 				</div>
 			</div>
 		</div>
