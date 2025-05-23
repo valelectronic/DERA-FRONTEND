@@ -5,13 +5,14 @@ import LoginPage from "./pages/LoginPages";
 import Navbar from "./components/Navbar";
 import ForgotPasswordPage from "./pages/ForgotPasswordPage";
 import { Toaster } from "react-hot-toast";
-import {useEffect} from "react";
+import {use, useEffect} from "react";
 import {useUserStore} from "./stores/useUserStore";
 import LoadingSpinner from "./components/LoadingSpinner";
 import AdminPage from "./pages/AdminPage";
 import EditingPage from "./pages/EditingPage";
 import CategoryPage from "./pages/CategoryPage";
-
+import CartPage from "./pages/CartPage";
+import { useCartStore } from "./stores/useCartStore";
 
 
 
@@ -20,7 +21,14 @@ function App() {
 
 
   const {checkAuth,user, checkingAuth} = useUserStore()
+  const {getCartItems} = useCartStore()
 
+ useEffect(() => {
+		if (!user) return;
+
+		getCartItems();
+	}, [getCartItems, user]);
+ 
 
   useEffect(() => {
     const checkUserAuth = async () => {
@@ -56,6 +64,7 @@ function App() {
       <Route path="/admin-dashboard" element={user?.role === "admin" ? <AdminPage/>: <Navigate to = "/"/>} />
       <Route path="/editingPage/:id" element={user && user.role === 'admin'? <EditingPage/>: <Navigate to = "/"/>} />
        <Route path="/category/:category" element={<CategoryPage />} />
+      <Route path="/cart" element={user ? <CartPage />: <Navigate to = "/login"/>} />
     
     </Routes>
     
