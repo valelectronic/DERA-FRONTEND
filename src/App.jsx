@@ -14,6 +14,8 @@ import CategoryPage from "./pages/CategoryPage";
 import CartPage from "./pages/CartPage";
 import { useCartStore } from "./stores/useCartStore";
 import CheckoutPage from "./pages/CheckoutPage";
+import PurchaseSuccess from "./pages/PurchaseSuccess";
+import CancelPage from "./pages/CancelPage";
 
 
 
@@ -67,6 +69,8 @@ function App() {
        <Route path="/category/:category" element={<CategoryPage />} />
       <Route path="/cart" element={user ? <CartPage />: <Navigate to = "/login"/>} />
       <Route path="/Checkout" element={user ? <CheckoutPage />: <Navigate to = "/login"/>} />
+      <Route path="/purchase-success" element={<PurchaseSuccess />} />
+      <Route path="/cancel" element={<CancelPage />}/>
     
     </Routes>
     
