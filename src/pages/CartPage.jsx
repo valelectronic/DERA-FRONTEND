@@ -11,7 +11,7 @@ const CartPage = () => {
   const navigate = useNavigate();
 
   return (
-    <div className='py-8 md:py-16 min-h-screen bg-gray-900 text-white'>
+    <div className='py-8 md:py-16 min-h-screen  text-white'>
       <div className='mx-auto max-w-screen-xl px-4 2xl:px-0'>
         <div className='mt-6 sm:mt-8 md:gap-6 flex flex-col lg:flex-row lg:items-start xl:gap-8'>
           <motion.div
