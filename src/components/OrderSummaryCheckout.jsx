@@ -41,6 +41,10 @@ const OrderSummaryCheckout = () => {
       setTotalAfterDiscount(subtotal);
     }
   }, [appliedCoupon, subtotal]);
+  
+
+  // Format amounts as NGN currency with commas and 2 decimals
+  
 
   const formatCurrency = (amount) =>
     amount.toLocaleString("en-NG", {
