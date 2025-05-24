@@ -5,7 +5,7 @@ import LoginPage from "./pages/LoginPages";
 import Navbar from "./components/Navbar";
 import ForgotPasswordPage from "./pages/ForgotPasswordPage";
 import { Toaster } from "react-hot-toast";
-import {use, useEffect} from "react";
+import { useEffect} from "react";
 import {useUserStore} from "./stores/useUserStore";
 import LoadingSpinner from "./components/LoadingSpinner";
 import AdminPage from "./pages/AdminPage";
@@ -13,6 +13,7 @@ import EditingPage from "./pages/EditingPage";
 import CategoryPage from "./pages/CategoryPage";
 import CartPage from "./pages/CartPage";
 import { useCartStore } from "./stores/useCartStore";
+import CheckoutPage from "./pages/CheckoutPage";
 
 
 
@@ -65,6 +66,7 @@ function App() {
       <Route path="/editingPage/:id" element={user && user.role === 'admin'? <EditingPage/>: <Navigate to = "/"/>} />
        <Route path="/category/:category" element={<CategoryPage />} />
       <Route path="/cart" element={user ? <CartPage />: <Navigate to = "/login"/>} />
+      <Route path="/Checkout" element={user ? <CheckoutPage />: <Navigate to = "/login"/>} />
     
     </Routes>
     
