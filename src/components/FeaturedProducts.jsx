@@ -8,6 +8,8 @@ const FeaturedProducts = ({ featuredProducts }) => {
 
 	const { addToCart } = useCartStore();
 
+    
+
 	// Handle responsive items per page
 	useEffect(() => {
 		const handleResize = () => {
