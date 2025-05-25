@@ -107,7 +107,7 @@ const {user,logout} = useUserStore();
 
         {/* Mobile Hamburger */}
         <button
-          className='sm:hidden text-gray-300 hover:text-emerald-400 transition duration-300 ease-in-out'
+          className='sm:hidden text-gray-300  hover:text-emerald-400 transition duration-300 ease-in-out'
           onClick={() => setMobileMenuOpen(true)}
           aria-label="Open menu"
         >
@@ -115,93 +115,95 @@ const {user,logout} = useUserStore();
         </button>
 
         {/* Mobile Slide-in Menu */}
-        <div
-          className={`sm:hidden fixed top-0 right-0 h-full w-3/4 max-w-xs bg-gray-900 bg-opacity-95 backdrop-blur-md shadow-lg transition-transform duration-300 ease-in-out z-50 ${
-            mobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
-          }`}
+ {/* Mobile Slide-in Menu */}
+<div
+  className={`sm:hidden fixed top-0 right-0 h-full w-3/4 max-w-xs bg-gray-900 shadow-lg transition-transform duration-300 ease-in-out z-50 ${
+    mobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
+  }`}
+>
+  <div className="flex justify-end p-4">
+    <button
+      onClick={() => setMobileMenuOpen(false)}
+      className="text-gray-300 hover:text-red-400 text-3xl font-bold"
+      aria-label="Close menu"
+    >
+      &times;
+    </button>
+  </div>
+
+  {/* Card-like container for mobile menu items */}
+  <div className="bg-gray-900 mx-4 p-6 rounded-2xl shadow-md">
+    <nav className="flex flex-col gap-6 text-lg">
+      <Link
+        to="/"
+        className="text-gray-300 hover:text-emerald-400 transition"
+        onClick={() => setMobileMenuOpen(false)}
+      >
+        Home
+      </Link>
+
+      {user && (
+        <Link
+          to="/cart"
+          className="relative text-gray-300 hover:text-emerald-400 transition"
+          onClick={() => setMobileMenuOpen(false)}
         >
-          <div className="flex justify-end p-4">
-            <button
-              onClick={() => setMobileMenuOpen(false)}
-              className="text-gray-300 hover:text-red-400 text-3xl font-bold"
-              aria-label="Close menu"
-            >
-              &times;
-            </button>
-          </div>
-          <nav className='flex flex-col gap-6 px-6 py-4 text-lg'>
-            <Link
-              to='/'
-              className='text-gray-300 hover:text-emerald-400 transition'
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              Home
-            </Link>
+          <ShoppingCart className="inline-block mr-1" size={20} />
+          Cart
+          {cart.length > 0 && (
+            <span className="absolute -top-2 -left-2 bg-emerald-500 text-white rounded-full px-2 py-0.5 text-xs">
+              {cart.length}
+            </span>
+          )}
+        </Link>
+      )}
 
-            {user && (
-              <Link
-                to='/cart'
-                className='relative text-gray-300 hover:text-emerald-400 transition'
-                onClick={() => setMobileMenuOpen(false)}
-              >
-               <ShoppingCart className='inline-block mr-1 group-hover:text-emerald-400' size={20} />
-								<span className='hidden sm:inline'>Cart</span>
-								{cart.length > 0 && (
-									<span
-										className='absolute -top-2 -left-2 bg-emerald-500 text-white rounded-full px-2 py-0.5 
-									text-xs group-hover:bg-emerald-400 transition duration-300 ease-in-out'
-									>
-										{cart.length}
-									</span>
-								)}
-              </Link>
-            )}
+      {isAdmin && (
+        <Link
+          to="/Admin-dashboard"
+          className="bg-emerald-700 hover:bg-emerald-600 text-white px-3 py-2 rounded-md font-medium transition"
+          onClick={() => setMobileMenuOpen(false)}
+        >
+          <Lock className="inline-block mr-2" size={18} />
+          Dashboard
+        </Link>
+      )}
 
-            {isAdmin && (
-              <Link
-                to='/Admin-dashboard'
-                className='bg-emerald-700 hover:bg-emerald-600 text-white px-3 py-2 rounded-md font-medium transition'
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                <Lock className='inline-block mr-2' size={18} />
-                Dashboard
-              </Link>
-            )}
+      {user ? (
+        <button
+          className="bg-gray-700 hover:bg-gray-600 text-white py-2 px-4 rounded-md flex items-center transition"
+          onClick={() => {
+            logout();
+            setMobileMenuOpen(false);
+          }}
+        >
+          <LogOut size={18} />
+          <span className="ml-2">Log Out</span>
+        </button>
+      ) : (
+        <>
+          <Link
+            to="/signup"
+            className="bg-emerald-600 hover:bg-emerald-700 text-white py-2 px-4 rounded-md flex items-center transition"
+            onClick={() => setMobileMenuOpen(false)}
+          >
+            <UserPlus className="mr-2" size={18} />
+            Sign Up
+          </Link>
+          <Link
+            to="/login"
+            className="bg-gray-700 hover:bg-gray-600 text-white py-2 px-4 rounded-md flex items-center transition"
+            onClick={() => setMobileMenuOpen(false)}
+          >
+            <LogIn className="mr-2" size={18} />
+            Login
+          </Link>
+        </>
+      )}
+    </nav>
+  </div>
+</div>
 
-            {user ? (
-              <button
-                className='bg-gray-700 hover:bg-gray-600 text-white py-2 px-4 rounded-md flex items-center transition'
-                onClick={() => {
-                  logout()
-                  setMobileMenuOpen(false)
-                }}
-              
-              >
-                <LogOut size={18} />
-                <span className='ml-2'>Log Out</span>
-              </button>
-            ) : (
-              <>
-                <Link
-                  to='/signup'
-                  className='bg-emerald-600 hover:bg-emerald-700 text-white py-2 px-4 rounded-md flex items-center transition'
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  <UserPlus className='mr-2' size={18} />
-                  Sign Up
-                </Link>
-                <Link
-                  to='/login'
-                  className='bg-gray-700 hover:bg-gray-600 text-white py-2 px-4 rounded-md flex items-center transition'
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  <LogIn className='mr-2' size={18} />
-                  Login
-                </Link>
-              </>
-            )}
-          </nav>
-        </div>
       </div>
     </header>
   )
