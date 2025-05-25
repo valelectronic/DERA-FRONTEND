@@ -15,7 +15,8 @@ import CartPage from "./pages/CartPage";
 import { useCartStore } from "./stores/useCartStore";
 import CheckoutPage from "./pages/CheckoutPage";
 import CustomerSupportButton from "./components/CustomerSupport";
-import WhatsAppTest from "./components/WhatsAppTest";
+
+
 
 
 
@@ -76,7 +77,7 @@ function App() {
     </Routes>
     
     </div>
-   <WhatsAppTest/>
+  
     <Toaster/>
      <CustomerSupportButton/>
      
